@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppInstallMy</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>AppInstallMy</name>
+        <script><![CDATA[/**
+ * @class AppInstall
+ * @description This script installs Incident Management SM.now.
+ * @since 09/06/2023
+ * @date  09/06/2023
+ * @version 1.0.0
+ * @author Sascha Wildgrube E-Mail: <sascha.wildgrube@servicenow.com>
+ *
+ */
+function AppInstallMy() {
+    var installer = new x_snc_devtools.InstallerAPI(x_snc_devtools.GetAppName('global.Incident'));
+
+
+
+    // Add fields to the incident default view [SMNOW-568]
+    /*   installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'x_snc_devtools_caller_phone', 2);
+	//   muk  u_x_snc_devtools_affected_user 26 
+    installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'x_snc_devtools_affected_user', 3); 
+   	//   muk  u_affected_user_phone 3
+    installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'x_snc_devtools_affected_user_phone', 4);
+    installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'category', 5);
+    installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'x_snc_devtools_application_service', 9);
+    installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'x_snc_devtools_function', 11);
+    installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'x_snc_devtools_opened_group', 23);
+    installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'x_snc_devtools_template', 24);
+    installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'company', 29);
+	//Add Used Template field to incident default view[SMNOW-1432]
+    installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'x_snc_devtools_used_template', 25);*/
+    // installer.InsertFieldToFormSection2('bf1d96e3c0a801640190725e63f8ac80', 'u_etwas', 10);
+    //installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'u_etwas', 18);
+
+
+    // RecordDelete("sys_ui_element", "9139347493710e10a4c372918bba1040");
+    // RecordDelete("sys_ui_element", "f86374bc93310e10a4c372918bba104b");
+
+    // installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'x_snc_devtools_application_service', 31);
+
+    // installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'u_devtools_template', 32);
+    // installer.InsertFieldToFormSection('bf1d96e3c0a801640190725e63f8ac80', 'u_devtools_template', 32);
+
+    /* e = [{
+            ui_element: "short_description",
+            origPos: 20,
+            newPos: 21
+
+        },
+       {
+            ui_element: "description",
+            origPos: 21,
+            newPos: 20
+        }
+    ];
+	*/
+      e = [{
+            ui_element: "short_description",
+            origPos: 33,
+            newPos: 20
+
+        },
+        {
+            ui_element: "description",
+            origPos: 20,
+            newPos: 21
+        }
+    ];
+
+  /*  e = [{
+        ui_element: "description",
+        origPos: 20,
+        newPos: 20
+    }];*/
+    installer.ReOrderViewFields('bf1d96e3c0a801640190725e63f8ac80', e);
+
+
+
+    /*
+        // SMNOW-800: Incidents related to the Affected User
+        var relListId;
+        var relList = new GlideRecord('sys_ui_related_list');
+        relList.addEncodedQuery('name=incident^view=Default view');
+        relList.query();
+        if (relList.next()) {
+            relListId = relList.sys_id;
+        }
+        installer.RecordInsertOrUpdate(
+            'Add related list on form',
+            'sys_ui_related_list_entry', {
+                related_list: 'REL:8a1c4ad12b25bd10c0fb4cfbad01a079',
+                position: '11',
+                list_id: relListId
+            });
+        //Change Labels for Priority
+        installer.RecordInsertOrUpdate('Update Priority for incident', 'sys_choice', {
+            name: 'incident',
+            element: 'priority',
+            sequence: 5,
+            value: 5,
+            label: '5 - Very low',
+            language: 'en'
+        });
+        installer.RecordInsertOrUpdate('Update Priority for incident', 'sys_choice', {
+            name: 'incident',
+            element: 'priority',
+            sequence: 5,
+            value: 5,
+            label: '5 - Sehr niedrig',
+            language: 'de'
+        });
+    */
+    return installer.Finish();
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-04-16 13:03:59</sys_created_on>
+        <sys_id>50680caa936d4210a4c372918bba10db</sys_id>
+        <sys_mod_count>45</sys_mod_count>
+        <sys_name>AppInstallMy</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_50680caa936d4210a4c372918bba10db</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-05-03 08:10:32</sys_updated_on>
+    </sys_script_include>
+</record_update>

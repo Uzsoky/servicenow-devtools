@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.MyBravTEST</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>MyBravTEST</name>
+        <script><![CDATA[var MyBravTEST = Class.create();
+MyBravTEST.prototype = {
+    initialize: function() {},
+
+    type: 'MyBravTEST'
+};
+
+function DEVTOOLTest() {
+    var installer = new x_snc_devtools.InstallerAPI(x_snc_devtools.GetAppName('x_snc_devtools'));
+    gs.info("ins" + installer);
+
+    var grScriptInclude = new GlideRecord('sys_script_include');
+    gs.info("grScriptInclude" + grScriptInclude);
+    grScriptInclude.addQuery('api_name', 'global.TemplateHandler');
+    grScriptInclude.query();
+
+    if (grScriptInclude.next()) {
+        gs.info("next" + grScriptInclude.next());
+        // x_snc_devtools.GlideRecordDelete(grScriptInclude);
+        installer.RecordDelete('Remove Script Include with api-name global.TemplateHandler', 'sys_script_include', grScriptInclude.sys_id);
+    }
+}
+DEVTOOLTest();]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-04-13 22:04:32</sys_created_on>
+        <sys_id>d283d66d93210210a4c372918bba10e3</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>MyBravTEST</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_d283d66d93210210a4c372918bba10e3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-04-14 08:57:13</sys_updated_on>
+    </sys_script_include>
+</record_update>
